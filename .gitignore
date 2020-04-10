@@ -1,0 +1,37 @@
+# GIT
+.git
+
+# APP Files
+node_modules
+.grunt
+build/Release
+npm-debug.log
+.DS_Store
+composer.lock
+package-lock.json
+bkp
+*.bkp
+tmp
+temp
+database/*
+!db/
+db/*
+!db/README.txt
+
+# Logs
+logs
+*.log
+logs.log.*
+
+# VS Code
+.vscode
+
+# IDE Files
+/nbproject/
+.idea/*
+
+# Executables
+*.exe
+*.out
+*.app
+
