@@ -191,5 +191,6 @@ Command in nutshell for build, start, stop, remove and validate the docker stack
 * `docker-compose down` - remove your stack but mantain your databases and logs
 * `docker-compose start` - start your stack
 * `docker-compose stop`  - stop your stack 
+* `docker-compose down --volumes` - like _down_ but also removes volumes
 * `docker-compose config` validate your stack
 
