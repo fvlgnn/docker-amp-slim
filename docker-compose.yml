@@ -21,6 +21,7 @@ services:
       MYSQL_DB: ${MYSQL_DB}
     volumes:
       - ./app:/var/www/html:cached
+      - ./logs/app:/var/log/apache2
     depends_on:
       - mysql
 
