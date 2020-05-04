@@ -41,11 +41,11 @@ services:
       - backend
     environment:
       TZ: ${TIME_ZONE}
-      DB_ROOT_PASSWORD: ${DB_ROOTPASS}
-      DB_ROOT_HOST: "%"
-      DB_DATABASE: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOTPASS}
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
 
 networks:
   frontend:
