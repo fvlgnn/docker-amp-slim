@@ -64,11 +64,11 @@ _Edit or view this file before building the stack_
 * `TIME_ZONE`: Time zone, using form PHP and MySQL. 
 * `APP_URL`: Url of your web app. Using for CMS/Frameweork like Wordpress, CodeIgniter, etc.
 * `APACHE_PORT_EXPOSED`: Exposed port of you're web app.
-* `MYSQL_PORT_EXPOSED`: Used only if you want connetc to database with external client. It's port number used for connetcting with external client like _HeidiSQL_ or _MySQL Workbench_ to create database and tables. Configure external client connetction using _host_ `127.0.0.1`, _username_ `root` whereas _password_ your `MYSQL_ROOTPASS` and _port_ your `MYSQL_PORT_EXPOSED` as in environment file.
-* `MYSQL_ROOTPASS`: MySQL root password. It's not safe use this method in production but for development it's acceptable.
-* `MYSQL_USER`: User name for connetion database from your webapp.
-* `MYSQL_USER`: User password for connetion database from your webapp.
-* `MYSQL_DB`: Database of your webapp. Will be created at the build. Otherwise you can create database from docker exec or external client.
+* `DB_PORT_EXPOSED`: Used only if you want connetc to database with external client. It's port number used for connetcting with external client like _HeidiSQL_ or _MySQL Workbench_ to create database and tables. Configure external client connetction using _host_ `127.0.0.1`, _username_ `root` whereas _password_ your `DB_ROOTPASS` and _port_ your `DB_PORT_EXPOSED` as in environment file.
+* `DB_ROOTPASS`: MySQL root password. It's not safe use this method in production but for development it's acceptable.
+* `DB_USER`: User name for connetion database from your webapp.
+* `DB_USER`: User password for connetion database from your webapp.
+* `DB_NAME`: Database of your webapp. Will be created at the build. Otherwise you can create database from docker exec or external client.
 
 
 ### Workspace
@@ -80,17 +80,17 @@ This is you WebApp folder. Put here your PHP project (CMS/Framework/Sources).
 For connetcting to databse with Framework or source code use `getenv()` variables (view `index.php` source).
 
 ```php
-$dbhost = getenv('MYSQL_HOST');
-$dbuser = getenv('MYSQL_USER');
-$dbpass = getenv('MYSQL_PASS');
+$dbhost = getenv('DB_HOST');
+$dbuser = getenv('DB_USER');
+$dbpass = getenv('DB_PASS');
 ```
 
 For install a CMS with wizard setup use:
 
 * _hostname_: `db` 
-* _database_: _the environment variable `MYSQL_DB` as in environment file_ 
-* _username_: _the environment variable `MYSQL_USER` as in environment file_ 
-* _password_: _the environment variable `MYSQL_PASS` as in environment file_ 
+* _database_: _the environment variable `DB_NAME` as in environment file_ 
+* _username_: _the environment variable `DB_USER` as in environment file_ 
+* _password_: _the environment variable `DB_PASS` as in environment file_ 
 * _port_: `3306` _it's important to declare it!_
 
 #### Database folder: `db`

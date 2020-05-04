@@ -2,9 +2,9 @@
  
 var_dump("Hi, you're on ".getenv('APP_URL'));
  
-$dbhost = getenv('MYSQL_HOST');
-$dbuser = getenv('MYSQL_USER');
-$dbpass = getenv('MYSQL_PASS');
+$dbhost = getenv('DB_HOST');
+$dbuser = getenv('DB_USER');
+$dbpass = getenv('DB_PASS');
  
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
 if (!$conn) {

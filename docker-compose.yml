@@ -15,10 +15,10 @@ services:
     environment:
       APP_URL: ${APP_URL}
       TIME_ZONE: ${TIME_ZONE}
-      MYSQL_HOST: db:${MYSQL_PORT_EXPOSED}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASS: ${MYSQL_PASS}
-      MYSQL_DB: ${MYSQL_DB}
+      DB_HOST: db:${DB_PORT_EXPOSED}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
     volumes:
       - ./app:/var/www/html:cached
       - ./logs/app:/var/log/apache2
@@ -33,7 +33,7 @@ services:
         - DB_USER=${DB_USER}
         - DB_GROUP=${DB_GROUP}
     ports:
-      - ${MYSQL_PORT_EXPOSED}:3306
+      - ${DB_PORT_EXPOSED}:3306
     volumes:
       - ./logs/db:/var/log/mysql
       - ./db:/var/lib/mysql
@@ -41,11 +41,11 @@ services:
       - backend
     environment:
       TZ: ${TIME_ZONE}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOTPASS}
-      MYSQL_ROOT_HOST: "%"
-      MYSQL_DATABASE: ${MYSQL_DB}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASS}
+      DB_ROOT_PASSWORD: ${DB_ROOTPASS}
+      DB_ROOT_HOST: "%"
+      DB_DATABASE: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASS}
 
 networks:
   frontend:
