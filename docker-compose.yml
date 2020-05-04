@@ -36,7 +36,8 @@ services:
       - ${DB_PORT_EXPOSED}:3306
     volumes:
       - ./logs/db:/var/log/mysql
-      - ./db:/var/lib/mysql
+      - ./db/${DB_NAME}:/var/lib/mysql/${DB_NAME}
+      # - ./docker/mysql/init:/docker-entrypoint-initdb.d
     networks:
       - backend
     environment:
