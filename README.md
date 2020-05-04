@@ -87,7 +87,7 @@ $dbpass = getenv('MYSQL_PASS');
 
 For install a CMS with wizard setup use:
 
-* _hostname_: `mysql` 
+* _hostname_: `db` 
 * _database_: _the environment variable `MYSQL_DB` as in environment file_ 
 * _username_: _the environment variable `MYSQL_USER` as in environment file_ 
 * _password_: _the environment variable `MYSQL_PASS` as in environment file_ 
@@ -126,21 +126,21 @@ If you want to use persistent and encrypted databases storage, you can use the `
 # ...
 services:
 # ...
-  mysql:
+  db:
 # ...
     volumes:
-      - mysql:/var/lib/mysql
+      - database:/var/lib/mysql
 # ...
 
 # add after networks
 volumes:
-  mysql:
+  database:
 
 ```
 
 ---
 
-PHP and Apache logs can be followed on the terminal _(default whit stdout, stderr)_ by `docker-compose logs -f php-apache` command. 
+PHP and Apache logs can be followed on the terminal _(default whit stdout, stderr)_ by `docker-compose logs -f web` command. 
 If instead you want to have them in a file, edit the `docker-compose.yml` by adding this line as below.
 
 ```yaml
@@ -148,7 +148,7 @@ If instead you want to have them in a file, edit the `docker-compose.yml` by add
 # ...
 services:
 # ...
-  php-apache:
+  web:
 # ...
     volumes:
       - ./logs/app:/var/log/apache2

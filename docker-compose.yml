@@ -1,7 +1,7 @@
 version: "3.1"
 
 services:
-  php-apache:
+  web:
     container_name: ${PROJECT_NAME}_app_${VERSION_ID}
     build:
       context: ./docker/php-apache
@@ -15,7 +15,7 @@ services:
     environment:
       APP_URL: ${APP_URL}
       TIME_ZONE: ${TIME_ZONE}
-      MYSQL_HOST: mysql:${MYSQL_PORT_EXPOSED}
+      MYSQL_HOST: db:${MYSQL_PORT_EXPOSED}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASS: ${MYSQL_PASS}
       MYSQL_DB: ${MYSQL_DB}
@@ -23,9 +23,9 @@ services:
       - ./app:/var/www/html:cached
       - ./logs/app:/var/log/apache2
     depends_on:
-      - mysql
+      - db
 
-  mysql:
+  db:
     container_name: ${PROJECT_NAME}_db_${VERSION_ID}
     build:
       context: ./docker/mysql
