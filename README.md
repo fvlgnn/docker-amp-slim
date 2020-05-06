@@ -1,5 +1,5 @@
 # docker-amp-slim
-Docker environement stack with APACHE, MYSQL, PHP (php-apache)
+Docker environement stack with APACHE, MYSQL, PHP
 
 
 ## Overview
