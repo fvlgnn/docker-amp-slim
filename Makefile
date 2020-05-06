@@ -1,7 +1,7 @@
 install:
-	@mkdir -p ./logs/app
-	@mkdir -p ./logs/db
 	@mkdir -p ./db
+	@mkdir -p ./logs/db
+	@mkdir -p ./logs/web
 	@docker-compose up -d --build
 
 start:
@@ -15,13 +15,16 @@ remove:
 
 purge:
 	@docker-compose down
-	@rm -rf ./logs/app/*
+	@rm -rf ./db/*
 	@rm -rf ./logs/db/*
-	@find ./db/* -type f -not -name 'README.txt' -print0 | xargs -0  -I {} rm -f {}
-	@find ./db/* -type d -print0 | xargs -0  -I {} rm -rf {}
+	@rm -rf ./logs/web/*
 
 validate:
 	@docker-compose config
 
+bash-db:
+	@docker-compose exec db bash
 
+bash-web:
+	@docker-compose exec web bash
 	

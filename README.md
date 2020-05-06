@@ -41,15 +41,17 @@ docker-amp-slim
 │   │   │   Dockerfile
 │   │   │   
 │   │   └───init
+|   |           000-operations.sql
 │   │           dbapp.sql
+|   |           zzz-operations.sql
 │   │       
 │   └───php-apache
 │           app.conf
 │           Dockerfile
 │           
 └───logs
-    ├───app
-    └───db
+    ├───db
+    └───web
 ```
 
 
@@ -144,6 +146,45 @@ volumes:
 
 ---
 
+If you've a database dump you can add the `.sql` dump file in `docker\mariadb\init` and uncomment the follow row
+
+```yaml
+
+# ...
+services:
+# ...
+  db:
+# ...
+    volumes:
+      - ./docker/mariadb/init:/docker-entrypoint-initdb.d
+# ...
+
+```
+
+The database will be created at the first build
+
+---
+
+If you want have extra databases edit `docker\mariadb\init\000-operations.sql` or `docker\mariadb\init\zzz-operations.sql` and uncomment the follow row, using the database name chosen instead of `optional_database`.
+
+```yaml
+
+# ...
+services:
+# ...
+  db:
+# ...
+    volumes:
+      - ./docker/mariadb/init:/docker-entrypoint-initdb.d
+      - ./db/optional_database:/var/lib/mysql/optional_database
+# ...
+
+```
+
+The operations will be make at the first build
+
+---
+
 PHP and Apache logs can be followed on the terminal _(default whit stdout, stderr)_ by `docker-compose logs -f web` command. 
 If instead you want to have them in a file, edit the `docker-compose.yml` by adding this line as below.
 
@@ -155,7 +196,7 @@ services:
   web:
 # ...
     volumes:
-      - ./logs/app:/var/log/apache2
+      - ./logs/web:/var/log/apache2
       # ...
 # ...
 
@@ -187,7 +228,8 @@ If you're on linux system you can run:
 * `make remove` - remove your stack but mantain your databases and logs
 * `make purge` -  remove your stack and delete all databases and clear logs files
 * `make validate` - validate your docker-compose.yml file if you're do any changes
-
+* `make bash-db` - enter with bash into db container 
+* `make bash-web` - enter with bash into web container 
 
 Command in nutshell for build, start, stop, remove and validate the docker stack.
 
@@ -198,3 +240,4 @@ Command in nutshell for build, start, stop, remove and validate the docker stack
 * `docker-compose down --volumes` - like _down_ but also removes volumes
 * `docker-compose config` validate your stack
 
+* `docker-compose exec SERVICE_NAME bash` enters with bash terminal into container

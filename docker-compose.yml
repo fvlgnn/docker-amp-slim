@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   web:
-    container_name: ${PROJECT_NAME}_app_${VERSION_ID}
+    container_name: ${PROJECT_NAME}_web_${VERSION_ID}
     build:
       context: ./docker/php-apache
       args:
@@ -21,7 +21,7 @@ services:
       DB_NAME: ${DB_NAME}
     volumes:
       - ./app:/app:cached
-      - ./logs/app:/var/log/apache2
+      - ./logs/web:/var/log/apache2
     depends_on:
       - db
 
@@ -38,6 +38,7 @@ services:
       - ./logs/db:/var/log/mysql
       - ./db/${DB_NAME}:/var/lib/mysql/${DB_NAME}
       # - ./docker/mysql/init:/docker-entrypoint-initdb.d
+      # - ./db/optional_database:/var/lib/mysql/optional_database
     networks:
       - backend
     environment:
