@@ -134,7 +134,7 @@ services:
   db:
 # ...
     volumes:
-      # - ./db/${DB_NAME}:/var/lib/mysql/${DB_NAME}
+      # - ./db:/var/lib/mysql
       - database:/var/lib/mysql
 # ...
 
@@ -146,7 +146,7 @@ volumes:
 
 ---
 
-If you've a database dump you can add the `.sql` dump file in `docker\mariadb\init` and uncomment the follow row
+If you've a database dump you can add the `.sql`, `.gz` dump file in `docker\mariadb\init` and uncomment the follow row. The database will be created at the first build.
 
 ```yaml
 
@@ -161,27 +161,12 @@ services:
 
 ```
 
-The database will be created at the first build
+Also, if you need to perform other operations on databases at the first build, you can edit the following files by entering the queries that you need:
 
----
+  * `docker\mariadb\init\000-operations.sql`
+  * `docker\mariadb\init\zzz-operations.sql` 
 
-If you want have extra databases edit `docker\mariadb\init\000-operations.sql` or `docker\mariadb\init\zzz-operations.sql` and uncomment the follow row, using the database name chosen instead of `optional_database`.
-
-```yaml
-
-# ...
-services:
-# ...
-  db:
-# ...
-    volumes:
-      - ./docker/mariadb/init:/docker-entrypoint-initdb.d
-      - ./db/optional_database:/var/lib/mysql/optional_database
-# ...
-
-```
-
-The operations will be make at the first build
+These operations will only be performed on the first build
 
 ---
 

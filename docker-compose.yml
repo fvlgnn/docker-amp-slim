@@ -35,10 +35,9 @@ services:
     ports:
       - ${DB_PORT_EXPOSED}:3306
     volumes:
+      - ./db:/var/lib/mysql
+      # - ./docker/mariadb/init:/docker-entrypoint-initdb.d
       - ./logs/db:/var/log/mysql
-      - ./db/${DB_NAME}:/var/lib/mysql/${DB_NAME}
-      # - ./docker/mysql/init:/docker-entrypoint-initdb.d
-      # - ./db/optional_database:/var/lib/mysql/optional_database
     networks:
       - backend
     environment:
