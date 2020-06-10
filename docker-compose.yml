@@ -9,9 +9,6 @@ services:
         - XDEBUG=${XDEBUG}
     ports:
       - ${APACHE_PORT_EXPOSED}:80
-    networks:
-      - backend
-      - frontend
     environment:
       APP_URL: ${APP_URL}
       TIME_ZONE: ${TIME_ZONE}
@@ -38,8 +35,6 @@ services:
       - ./db:/var/lib/mysql
       # - ./docker/mariadb/init:/docker-entrypoint-initdb.d
       - ./logs/db:/var/log/mysql
-    networks:
-      - backend
     environment:
       TZ: ${TIME_ZONE}
       MYSQL_ROOT_PASSWORD: ${DB_ROOTPASS}
@@ -47,7 +42,3 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
-
-networks:
-  frontend:
-  backend:

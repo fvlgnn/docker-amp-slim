@@ -138,7 +138,7 @@ services:
       - database:/var/lib/mysql
 # ...
 
-# add after networks
+# add after services
 volumes:
   database:
 
