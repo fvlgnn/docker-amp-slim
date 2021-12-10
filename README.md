@@ -72,7 +72,7 @@ _Edit or view this file before building the stack_
 * `DB_PORT_EXPOSED`: Used only if you want connetc to database with external client. It's port number used for connetcting with external client like _HeidiSQL_ or _MySQL Workbench_ to create database and tables. Configure external client connetction using _host_ `127.0.0.1`, _username_ `root` whereas _password_ your `DB_ROOTPASS` and _port_ your `DB_PORT_EXPOSED` as in environment file.
 * `DB_ROOTPASS`: MySQL root password. It's not safe use this method in production but for development it's acceptable.
 * `DB_USER`: User name for connetion database from your webapp.
-* `DB_USER`: User password for connetion database from your webapp.
+* `DB_PASS`: User password for connetion database from your webapp.
 * `DB_NAME`: Database of your webapp. Will be created at the build. Otherwise you can create database from docker exec or external client.
 
 
