@@ -1,14 +1,6 @@
 FROM php:7.1-apache
 
-MAINTAINER @fvlgnn
-
 ARG XDEBUG
-
-COPY app.conf /usr/local/apache2/conf/app.conf
-RUN echo "Include /usr/local/apache2/conf/app.conf" \
-    >> /usr/local/apache2/conf/httpd.conf \
-    && echo "Include /usr/local/apache2/conf/httpd.conf" \
-    >> /etc/apache2/apache2.conf
 
 RUN cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
     && sed -i -e "s/^ *post_max_size.*/post_max_size = 64MB/g" /usr/local/etc/php/php.ini \
