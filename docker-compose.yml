@@ -33,7 +33,7 @@ services:
       - ${DB_PORT_EXPOSED}:3306
     volumes:
       - ./db:/var/lib/mysql
-      # - ./docker/mariadb/init:/docker-entrypoint-initdb.d
+      # - ./docker/mysql/init:/docker-entrypoint-initdb.d
       - ./logs/db:/var/log/mysql
     environment:
       TZ: ${TIME_ZONE}

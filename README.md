@@ -31,7 +31,7 @@ docker-amp-slim
 │   Makefile
 │   README.md
 │   
-├───app
+├───src
 │       index.php
 │       info.php
 │       
@@ -78,9 +78,9 @@ _Edit or view this file before building the stack_
 
 ### Workspace
 
-#### Webapp foleder: `app`
+#### Webapp foleder: `src`
 
-This is you WebApp folder. Put here your PHP project (CMS/Framework/Sources).
+This is you WebApp folder. Put here your PHP source project (CMS/Framework/Sources).
 
 For connetcting to databse with Framework or source code use `getenv()` variables (view `index.php` source).
 
@@ -146,7 +146,7 @@ volumes:
 
 ---
 
-If you've a database dump you can add the `.sql`, `.gz` dump file in `docker\mariadb\init` and uncomment the follow row. The database will be created at the first build.
+If you've a database dump you can add the `.sql`, `.gz` dump file in `docker\mysql\init` and uncomment the follow row. The database will be created at the first build.
 
 ```yaml
 
@@ -156,15 +156,15 @@ services:
   db:
 # ...
     volumes:
-      - ./docker/mariadb/init:/docker-entrypoint-initdb.d
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
 # ...
 
 ```
 
 Also, if you need to perform other operations on databases at the first build, you can edit the following files by entering the queries that you need:
 
-  * `docker\mariadb\init\000-operations.sql`
-  * `docker\mariadb\init\zzz-operations.sql` 
+  * `docker\mysql\init\000-operations.sql`
+  * `docker\mysql\init\zzz-operations.sql` 
 
 These operations will only be performed on the first build
 
