@@ -28,7 +28,6 @@ services:
       context: ./docker/mysql
       args:
         - DB_USER=${DB_USER}
-        - DB_GROUP=${DB_GROUP}
     ports:
       - ${DB_PORT_EXPOSED}:3306
     volumes:
