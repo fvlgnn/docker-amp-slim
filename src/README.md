@@ -1,1 +1,1 @@
-# PUT YOUR WEBAPP SOURCE HERE!
+# Place your webapp/CMS source code here!
